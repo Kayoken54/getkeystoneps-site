@@ -1,7 +1,6 @@
-
 backend:
   name: github
-  repo: YOUR_GITHUB/YOUR_REPO
+  repo: Kayoken54/getkeystoneps-site
   branch: main
 
 media_folder: "images"
@@ -15,11 +14,11 @@ collections:
         label: "Site Content"
         name: "site"
         fields:
-          - {label: Headline, name: headline, widget: string}
-          - {label: Subtext, name: subtext, widget: string}
-          - label: Testimonials
-            name: testimonials
-            widget: list
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Subtext", name: "subtext", widget: "string" }
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
             fields:
-              - {label: Quote, name: quote, widget: string}
-              - {label: Author, name: author, widget: string}
+              - { label: "Quote", name: "quote", widget: "string" }
+              - { label: "Author", name: "author", widget: "string" }
