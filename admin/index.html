@@ -1,9 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+<meta charset="UTF-8">
+<title>Keystone Editor</title>
+<style>
+body{font-family:Arial;padding:40px;max-width:800px;margin:auto}
+input,textarea{width:100%;padding:12px;margin-bottom:15px}
+button{padding:12px 20px;background:black;color:white;border:none}
+</style>
 </head>
 <body>
+
+<h1>Keystone Site Editor</h1>
+
+<label>Headline</label>
+<input id="headline"/>
+
+<label>Subtext</label>
+<input id="subtext"/>
+
+<label>Testimonials (one per line)</label>
+<textarea id="testimonials" rows="6"></textarea>
+
+<button onclick="save()">Save Changes</button>
+
+<script>
+fetch('/content/site.json')
+.then(r=>r.json())
+.then(data=>{
+headline.value=data.headline
+subtext.value=data.subtext
+testimonials.value=data.testimonials.map(t=>t.quote+"|"+t.author).join("\n")
+})
+
+function save(){
+const data={
+headline:headline.value,
+subtext:subtext.value,
+testimonials:testimonials.value.split("\n").map(line=>{
+const parts=line.split("|")
+return {quote:parts[0],author:parts[1]||""}
+})
+}
+
+const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"})
+const a=document.createElement("a")
+a.href=URL.createObjectURL(blob)
+a.download="site.json"
+a.click()
+}
+</script>
+
 </body>
 </html>
