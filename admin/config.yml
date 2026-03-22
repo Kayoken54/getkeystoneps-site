@@ -2,7 +2,9 @@ backend:
   name: github
   repo: Kayoken54/getkeystoneps-site
   branch: main
-
+  base_url: super-cherry-d02a.eddie-snyder.workers.dev
+  auth_endpoint: auth
+  
 media_folder: "images"
 public_folder: "/images"
 
