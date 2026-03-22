@@ -3,8 +3,6 @@ backend:
   repo: Kayoken54/getkeystoneps-site
   branch: main
 
-local_backend: true
-
 media_folder: "images"
 public_folder: "/images"
 
