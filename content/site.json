@@ -1,14 +1,30 @@
 {
-  "headline": "Finally Fix What's Been Temporary",
-  "subtext": "We handle the headache so you can run your business.",
-  "testimonials": [
+  "cards": [
     {
-      "quote": "They handled everything start to finish.",
-      "author": "Local Business Owner"
+      "title": "You Show Us The Problem",
+      "description": "Temporary fixes, broken signs, unsafe setups — we handle it."
     },
     {
-      "quote": "No more temporary fixes.",
+      "title": "We Handle Everything",
+      "description": "We find vendors, manage pricing, and deliver permanent solutions."
+    },
+    {
+      "title": "Fast & Reliable",
+      "description": "Our team ensures every project is done quickly without sacrificing quality."
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "We had a temporary safety fix for 8 months. They handled everything and got it permanently fixed in a week.",
+      "author": "Local Shop Owner"
+    },
+    {
+      "quote": "I didn't want to chase contractors. Keystone just handled it and stayed in budget.",
       "author": "Warehouse Manager"
+    },
+    {
+      "quote": "Best part was not thinking about it again. They took care of everything.",
+      "author": "Restaurant Owner"
     }
   ]
 }
