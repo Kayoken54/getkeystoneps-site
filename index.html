@@ -1,41 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Keystone Permanent Solutions</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<p>
 
-  <!-- NAV -->
-  <nav>
-    <div style="display:flex; align-items:center; gap:0.5rem;">
-      <img src="/logo.png" alt="Keystone Logo" height="42">
-      <strong>Keystone Permanent Solutions</strong>
+
+
+
+    <title>Keystone Permanent Solutions</title>
+    <link rel="icon" href="logo.png">
+    <style>
+        body{font-family:Arial;margin:0;background:#fff;color:#1f2937}
+        nav{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+        .hero{background:linear-gradient(#0B1F3A,#132F52);color:white;text-align:center;padding:80px 20px}
+        .section{padding:60px 20px}
+        .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1000px;margin:auto}
+        .card{background:#f8f9fb;padding:25px;border-radius:12px}
+        button{background:#C8A46A;border:none;padding:12px 18px;border-radius:10px;font-weight:600}
+        .testimonials{max-width:900px;margin:auto;display:grid;gap:20px}
+        .testimonial{background:#f8f9fb;padding:20px;border-radius:12px}
+    </style>
+
+
+
+</p>
+<nav>
+    <div style="display:flex;align-items:center;gap:10px">
+        <img src="logo.png" height="42">
+        <strong>Keystone Permanent Solutions</strong>
     </div>
-    <a href="tel:6156032573"><button class="btn">Call Now</button></a>
-  </nav>
+    <a href="tel:6156032573"><button>Call Now</button></a>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero text-center">
-    <h1>Finally Fix What's Been Temporary</h1>
-    <p>We handle the headache so you can run your business.</p>
-    <a href="tel:6156032573"><button class="btn">Call 615-603-2573</button></a>
-  </section>
+<section class="hero">
+    <h1 id="headline">Finally Fix What's Been Temporary</h1>
+    <p id="subtext">We handle the headache so you can run your business.</p>
+</section>
 
-  <!-- CARDS (DYNAMIC) -->
-  <section class="container grid md-grid-2" id="cards-section">
-    <!-- Cards loaded from site.json -->
-  </section>
-
-  <!-- TESTIMONIALS (DYNAMIC) -->
-  <section class="container text-center" id="testimonials-section">
-    <h2>Trusted By Small Businesses</h2>
-    <!-- Testimonials loaded from site.json -->
-  </section>
-
-  <!-- CALCULATOR -->
+<section class="section">
+    <h2 style="text-align:center">Trusted By Small Businesses</h2>
+    <div class="testimonials" id="testimonials"></div>
+</section>
+<!-- CALCULATOR -->
   <section class="container">
     <div class="card" style="max-width:500px; margin:0 auto;">
       <h2>Project Pricing Estimator</h2>
