@@ -69,7 +69,7 @@ export default function KeystoneLanding() {
 
       <nav className="flex justify-between items-center p-5 shadow-sm sticky top-0 bg-white z-50">
         <div className="flex items-center gap-2 font-bold">
-          <img src="/images/logo.png" className="h-10" />
+          <img src="\images\logo.png" className="h-10" />
           Keystone Permanent Solutions
         </div>
         <a href="tel:6156032573" id="navCTA" className="cta">Call Now</a>
@@ -78,7 +78,7 @@ export default function KeystoneLanding() {
       <section className="hero text-center py-24 px-6">
         <h1 className="text-4xl font-bold mb-3">Finally Fix What's Been Temporary</h1>
         <p className="opacity-90 mb-6">We handle vendors, pricing, and scheduling — you just approve it.</p>
-        <a href="tel:6156032573" className="cta">Call 615-603-2573</a>
+        <a href="tel:6156032573" className="cta">Call Now</a>
       </section>
 
       <section className="py-20 px-6 max-w-5xl mx-auto">
