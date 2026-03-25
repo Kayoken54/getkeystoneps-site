@@ -5,9 +5,10 @@ export default function KeystoneLanding() {
   const [priority, setPriority] = useState(false);
   const trackRef = useRef(null);
   const indexRef = useRef(0);
+  const startX = useRef(0);
 
   const vendor = Math.round(budget * 0.7);
-  const profit = Math.round((budget - vendor) + (priority ? 200 : 0));
+  const profit = Math.round(budget - vendor + (priority ? 200 : 0));
   const margin = budget ? Math.round((profit / budget) * 100) : 0;
 
   useEffect(() => {
@@ -15,38 +16,32 @@ export default function KeystoneLanding() {
       const track = trackRef.current;
       if (!track) return;
       indexRef.current++;
-      if (indexRef.current > track.children.length - 1) {
-        indexRef.current = 0;
-      }
+      if (indexRef.current > track.children.length - 1) indexRef.current = 0;
       track.style.transform = `translateX(-${indexRef.current * 320}px)`;
-    }, 3500);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const handler = () => {
-      const y = window.scrollY;
-      const nav = document.getElementById("navCTA");
-      const bottom = document.getElementById("bottomCTA");
+  const handleTouchStart = (e) => {
+    startX.current = e.touches[0].clientX;
+  };
 
-      if (!nav || !bottom) return;
+  const handleTouchEnd = (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX.current - endX;
+    const track = trackRef.current;
+    if (!track) return;
 
-      if (y < 400) {
-        nav.textContent = "Call Now";
-        bottom.textContent = "Call Now";
-      } else if (y < 1200) {
-        nav.textContent = "Get Estimate";
-        bottom.textContent = "Get Estimate";
-      } else {
-        nav.textContent = "Start Project";
-        bottom.textContent = "Start Project";
-      }
-    };
+    if (diff > 50) indexRef.current++;
+    if (diff < -50) indexRef.current--;
 
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
+    if (indexRef.current < 0) indexRef.current = 0;
+    if (indexRef.current > track.children.length - 1)
+      indexRef.current = track.children.length - 1;
+
+    track.style.transform = `translateX(-${indexRef.current * 320}px)`;
+  };
 
   const submit = (e) => {
     e.preventDefault();
@@ -59,105 +54,160 @@ export default function KeystoneLanding() {
   };
 
   return (
-    <div className="min-h-screen text-slate-800">
-      <style>{`
-        body{margin:0;font-family:system-ui}
-        .hero{background:linear-gradient(180deg,#0B1F3A,#132F52);color:white}
-        .card{background:#f7f8fb;border-radius:14px;padding:20px}
-        .cta{background:#C8A46A;color:black;padding:12px 18px;border-radius:10px;font-weight:700}
-      `}</style>
+    <div className="min-h-screen text-slate-800" style={{ fontFamily: "system-ui" }}>
 
+      {/* NAV */}
       <nav className="flex justify-between items-center p-5 shadow-sm sticky top-0 bg-white z-50">
         <div className="flex items-center gap-2 font-bold">
-          <img src="/images/logo.png" alt="Keystone Permanent Solutions logo" className="h-10" />
+          <img src="/logo.png" className="h-10" />
           Keystone Permanent Solutions
         </div>
-        <a href="tel:6156032573" id="navCTA" className="cta">Call Now</a>
+        <a href="tel:6156032573" className="bg-[#C8A46A] px-4 py-2 rounded font-semibold animate-pulse">
+          Call Eddie
+        </a>
       </nav>
 
-      <section className="hero text-center py-24 px-6">
-        <h1 className="text-4xl font-bold mb-3">Finally Fix What's Been Temporary</h1>
-        <p className="opacity-90 mb-6">We handle vendors, pricing, and scheduling — you just approve it.</p>
-        <a href="tel:6156032573" className="cta">Call Now</a>
-      </section>
+      {/* HERO */}
+      <section style={{ background: "#0B1F3A", color: "white" }} className="text-center py-24 px-6">
+        <div className="mb-4 inline-block bg-white/10 px-4 py-1 rounded-full text-sm">
+          Serving Tennessee Small Businesses
+        </div>
 
-      <section className="py-20 px-6 max-w-5xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-6">Temporary fixes that never get fixed</h2>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="card">Broken signage patched instead of replaced</div>
-          <div className="card">Safety workarounds that stay forever</div>
-          <div className="card">Temporary wiring or lighting</div>
-          <div className="card">Repairs that keep getting delayed</div>
+        <h1 className="text-4xl font-bold mb-3">
+          Stop Living With "Temporary" Fixes
+        </h1>
+
+        <p className="opacity-90 mb-6 max-w-2xl mx-auto">
+          Broken sign? Safety workaround? Something that's been "temporary" for months?
+          
+          Text me a photo. I’ll handle vendors, pricing, and getting it permanently fixed.
+        </p>
+
+        <div className="flex justify-center gap-3 flex-wrap">
+          <a href="sms:6156032573" className="bg-[#C8A46A] px-6 py-3 rounded font-semibold hover:scale-105 transition">
+            Text Me a Photo
+          </a>
+          <a href="tel:6156032573" className="bg-white text-black px-6 py-3 rounded font-semibold hover:scale-105 transition">
+            Call 615-603-2573
+          </a>
+        </div>
+
+        <div className="mt-6 text-sm opacity-80">
+          Small jobs welcome • No contracts • You approve everything first
         </div>
       </section>
 
-      <section className="bg-gray-50 py-20 px-6">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl font-semibold mb-10">Simple. Clear. Done.</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div>
-              <h3 className="font-bold">You Show Us</h3>
-              <p>Send a photo or describe the issue</p>
+      {/* THINGS I FIX */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-8 text-center">
+            Things I Fix All The Time
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-gray-100 p-5 rounded">
+              Temporary signs that stayed temporary
             </div>
-            <div>
-              <h3 className="font-bold">We Handle It</h3>
-              <p>We source vendors and pricing</p>
+            <div className="bg-gray-100 p-5 rounded">
+              Safety fixes nobody scheduled
             </div>
-            <div>
-              <h3 className="font-bold">You Approve</h3>
-              <p>We manage completion</p>
+            <div className="bg-gray-100 p-5 rounded">
+              Broken fixtures patched with tape
+            </div>
+            <div className="bg-gray-100 p-5 rounded">
+              Vendor quotes nobody followed up on
+            </div>
+            <div className="bg-gray-100 p-5 rounded">
+              "We'll get to it later" repairs
+            </div>
+            <div className="bg-gray-100 p-5 rounded">
+              Temporary workarounds that became permanent
             </div>
           </div>
         </div>
       </section>
 
+      {/* CREDIBILITY BADGES */}
+      <section className="bg-gray-50 py-16 px-6">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-4 gap-6 text-center">
+          <div>
+            <div className="font-bold">No Contracts</div>
+            <div className="text-sm text-gray-600">Use only when needed</div>
+          </div>
+          <div>
+            <div className="font-bold">Small Jobs Welcome</div>
+            <div className="text-sm text-gray-600">Even the annoying stuff</div>
+          </div>
+          <div>
+            <div className="font-bold">Local Vendors</div>
+            <div className="text-sm text-gray-600">Tennessee based</div>
+          </div>
+          <div>
+            <div className="font-bold">You Approve First</div>
+            <div className="text-sm text-gray-600">No surprise costs</div>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
       <section className="py-20 px-6">
-        <h2 className="text-center text-2xl font-semibold mb-8">Trusted By Small Businesses</h2>
-        <div className="overflow-hidden max-w-5xl mx-auto">
+        <h2 className="text-center text-2xl font-semibold mb-8">What businesses say</h2>
+        <div
+          className="overflow-hidden max-w-5xl mx-auto"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <div ref={trackRef} className="flex gap-5 transition-transform duration-500">
-            <div className="card min-w-[300px]">They fixed something we ignored for a year.<br/><strong>- Shop Owner</strong></div>
-            <div className="card min-w-[300px]">I didn't chase contractors once.<br/><strong>- Warehouse Manager</strong></div>
-            <div className="card min-w-[300px]">Approved it and it was done.<br/><strong>- Restaurant Owner</strong></div>
-            <div className="card min-w-[300px]">Saved me hours of calls.<br/><strong>- Retail Manager</strong></div>
+            <div className="bg-gray-100 p-5 rounded min-w-[300px]">
+              Finally fixed our duct taped sign.<br />
+              <strong>- Nashville Shop</strong>
+            </div>
+            <div className="bg-gray-100 p-5 rounded min-w-[300px]">
+              Didn't chase contractors once.<br />
+              <strong>- Franklin Warehouse</strong>
+            </div>
+            <div className="bg-gray-100 p-5 rounded min-w-[300px]">
+              Approved it and it was done.<br />
+              <strong>- Murfreesboro Restaurant</strong>
+            </div>
+            <div className="bg-gray-100 p-5 rounded min-w-[300px]">
+              Saved me hours of calls.<br />
+              <strong>- Local Retail Store</strong>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* CONTACT */}
       <section className="py-20 px-6">
-        <div className="max-w-xl mx-auto card">
-          <h2 className="text-xl font-semibold mb-4">Project Pricing Estimator</h2>
-          <input
-            type="number"
-            placeholder="Enter your budget"
-            className="w-full border p-2 rounded mb-3"
-            onChange={(e) => setBudget(Number(e.target.value))}
-          />
-          <label className="flex gap-2 mb-3">
-            <input type="checkbox" onChange={(e) => setPriority(e.target.checked)} />
-            Priority Service (+$200)
-          </label>
-          <p>Vendor Cost: ${vendor}</p>
-          <p>Your Profit: ${profit}</p>
-          <p>Margin: {margin}%</p>
-        </div>
-      </section>
-
-      <section className="py-20 px-6">
-        <form onSubmit={submit} className="max-w-xl mx-auto card">
-          <h2 className="text-xl font-semibold mb-4">Start Your Project</h2>
+        <form onSubmit={submit} className="max-w-xl mx-auto bg-gray-100 p-6 rounded">
+          <h2 className="text-xl font-semibold mb-4">Text me a photo or fill this out</h2>
           <input name="name" placeholder="Your Name" className="w-full border p-2 rounded mb-2" required />
-          <input name="business" placeholder="Business Name" className="w-full border p-2 rounded mb-2" />
+          <input name="business" placeholder="Business" className="w-full border p-2 rounded mb-2" />
           <input name="phone" placeholder="Phone" className="w-full border p-2 rounded mb-2" required />
-          <input name="budget" value={budget} readOnly className="w-full border p-2 rounded mb-2" />
           <textarea name="details" placeholder="What needs fixed?" className="w-full border p-2 rounded mb-2" />
-          <button className="cta w-full">Submit Project</button>
+          <button className="bg-[#C8A46A] w-full py-3 rounded font-semibold">
+            I'll take it from here
+          </button>
         </form>
       </section>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-3 flex justify-center gap-3">
-        <a href="tel:6156032573" id="bottomCTA" className="cta">Call Now</a>
-        <a href="#" className="border px-4 py-2 rounded">Get Estimate</a>
+      {/* STICKY CTA */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-3 flex gap-3 z-50 md:hidden">
+        <a
+          href="sms:6156032573"
+          className="flex-1 bg-[#C8A46A] text-center py-3 rounded font-semibold animate-bounce"
+        >
+          Text Photo
+        </a>
+        <a
+          href="tel:6156032573"
+          className="flex-1 bg-black text-white text-center py-3 rounded font-semibold"
+        >
+          Call
+        </a>
       </div>
+
     </div>
   );
 }
