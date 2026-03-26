@@ -59,7 +59,7 @@ export default function KeystoneLanding() {
       {/* NAV */}
       <nav className="flex justify-between items-center p-5 shadow-sm sticky top-0 bg-white z-50">
         <div className="flex items-center gap-2 font-bold">
-          <img src="public/images/logo.png" className="h-10" />
+          <img src="/images/logo.png" className="h-10" alt="Keystone Permanent Solutions logo" />
           Keystone Permanent Solutions
         </div>
         <a href="tel:6156012865" className="bg-[#C8A46A] px-4 py-2 rounded font-semibold animate-pulse">
