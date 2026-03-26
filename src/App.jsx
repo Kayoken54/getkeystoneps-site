@@ -143,10 +143,6 @@ export default function KeystoneLanding() {
             <div className="text-sm text-gray-600">Tennessee based</div>
           </div>
           <div>
-            <div className="font-bold">You Approve First</div>
-            <div className="text-sm text-gray-600">No surprise costs</div>
-          </div>
-          <div>
             <div className="font-bold">Your budget sets the stage</div>
             <div className="text-sm text-gray-600">We only go by your budget</div>
           </div>
