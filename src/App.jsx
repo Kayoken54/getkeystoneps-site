@@ -59,10 +59,10 @@ export default function KeystoneLanding() {
       {/* NAV */}
       <nav className="flex justify-between items-center p-5 shadow-sm sticky top-0 bg-white z-50">
         <div className="flex items-center gap-2 font-bold">
-          <img src="/logo.png" className="h-10" />
+          <img src="public/images/logo.png" className="h-10" />
           Keystone Permanent Solutions
         </div>
-        <a href="tel:6156032573" className="bg-[#C8A46A] px-4 py-2 rounded font-semibold animate-pulse">
+        <a href="tel:6156012865" className="bg-[#C8A46A] px-4 py-2 rounded font-semibold animate-pulse">
           Call Eddie
         </a>
       </nav>
@@ -84,16 +84,16 @@ export default function KeystoneLanding() {
         </p>
 
         <div className="flex justify-center gap-3 flex-wrap">
-          <a href="sms:6156032573" className="bg-[#C8A46A] px-6 py-3 rounded font-semibold hover:scale-105 transition">
+          <a href="sms:6156012865" className="bg-[#C8A46A] px-6 py-3 rounded font-semibold hover:scale-105 transition">
             Text Me a Photo
           </a>
-          <a href="tel:6156032573" className="bg-white text-black px-6 py-3 rounded font-semibold hover:scale-105 transition">
-            Call 615-603-2573
+          <a href="tel:6156012865" className="bg-white text-black px-6 py-3 rounded font-semibold hover:scale-105 transition">
+            Call 615-601-2865
           </a>
         </div>
 
         <div className="mt-6 text-sm opacity-80">
-          Small jobs welcome • No contracts • You approve everything first
+          Small jobs welcome • No contracts • You approve everything first • Your budget our resources
         </div>
       </section>
 
@@ -131,7 +131,7 @@ export default function KeystoneLanding() {
       <section className="bg-gray-50 py-16 px-6">
         <div className="max-w-5xl mx-auto grid md:grid-cols-4 gap-6 text-center">
           <div>
-            <div className="font-bold">No Contracts</div>
+            <div className="font-bold">No Contracts*</div>
             <div className="text-sm text-gray-600">Use only when needed</div>
           </div>
           <div>
@@ -146,6 +146,10 @@ export default function KeystoneLanding() {
             <div className="font-bold">You Approve First</div>
             <div className="text-sm text-gray-600">No surprise costs</div>
           </div>
+          <div>
+            <div className="font-bold">Your budget sets the stage</div>
+            <div className="text-sm text-gray-600">We only go by your budget</div>
+          </div>
         </div>
       </section>
 
@@ -157,11 +161,6 @@ export default function KeystoneLanding() {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          <div ref={trackRef} className="flex gap-5 transition-transform duration-500">
-            <div className="bg-gray-100 p-5 rounded min-w-[300px]">
-              Finally fixed our duct taped sign.<br />
-              <strong>- Nashville Shop</strong>
-            </div>
             <div className="bg-gray-100 p-5 rounded min-w-[300px]">
               Didn't chase contractors once.<br />
               <strong>- Franklin Warehouse</strong>
@@ -170,11 +169,6 @@ export default function KeystoneLanding() {
               Approved it and it was done.<br />
               <strong>- Murfreesboro Restaurant</strong>
             </div>
-            <div className="bg-gray-100 p-5 rounded min-w-[300px]">
-              Saved me hours of calls.<br />
-              <strong>- Local Retail Store</strong>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -195,19 +189,19 @@ export default function KeystoneLanding() {
       {/* STICKY CTA */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-3 flex gap-3 z-50 md:hidden">
         <a
-          href="sms:6156032573"
+          href="sms:6156012865"
           className="flex-1 bg-[#C8A46A] text-center py-3 rounded font-semibold animate-bounce"
         >
           Text Photo
         </a>
         <a
-          href="tel:6156032573"
+          href="tel:6156012865"
           className="flex-1 bg-black text-white text-center py-3 rounded font-semibold"
         >
           Call
         </a>
       </div>
-
+      
     </div>
   );
 }
