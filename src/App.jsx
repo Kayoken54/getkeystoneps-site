@@ -32,16 +32,16 @@ const badges = ["Small jobs welcome", "No contracts", "You approve everything fi
 
 const processSteps = [
   {
-    title: "1. You text me a photo",
-    text: "Show me what's been sitting too long. A photo or quick description is enough.",
+    title: "1. Text me a photo",
+    text: "Show me what has been sitting too long. A photo or quick description is enough.",
   },
   {
-    title: "2. I get it priced",
-    text: "I handle vendors, pricing, and next steps so you don't have to chase anyone.",
+    title: "2. I review and price it",
+    text: "I handle vendors, pricing, and next steps so you do not have to chase anyone.",
   },
   {
-    title: "3. You approve it",
-    text: "You get a clear all-in number and decide if you want to move forward.",
+    title: "3. You approve everything",
+    text: "You get a clear all-in number before anything gets done.",
   },
   {
     title: "4. I get it handled",
@@ -49,18 +49,36 @@ const processSteps = [
   },
 ];
 
+const nextSteps = [
+  "I review the photo or issue",
+  "I send pricing and options",
+  "You approve if you want to move forward",
+  "I get it scheduled and handled",
+];
+
+const beforeAfterExamples = [
+  {
+    before: "Temporary banner used for months",
+    after: "Permanent sign sourced and installed",
+  },
+  {
+    before: "Patch repair that kept getting ignored",
+    after: "Clean permanent fix completed",
+  },
+];
+
 export default function KeystoneLanding() {
   const [budget, setBudget] = useState(0);
   const [priority, setPriority] = useState(false);
-  const [ctaLabel, setCtaLabel] = useState("Call Eddie");
+  const [ctaLabel, setCtaLabel] = useState("Text Me a Photo");
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const touchStartX = useRef(null);
 
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
-      if (y < 500) setCtaLabel("Call Eddie");
-      else if (y < 1600) setCtaLabel("Text Me a Photo");
+      if (y < 500) setCtaLabel("Text Me a Photo");
+      else if (y < 1600) setCtaLabel("Call Eddie");
       else setCtaLabel("Start Your Project");
     };
 
@@ -90,7 +108,7 @@ export default function KeystoneLanding() {
     window.location.href = `mailto:eddie.snyder@getkeystoneps.com?subject=New Project Request&body=${body}`;
   };
 
-  const primaryHref = ctaLabel === "Text Me a Photo" ? "sms:6156032573" : "tel:6156032573";
+  const primaryHref = ctaLabel === "Text Me a Photo" ? "sms:6156032573" : ctaLabel === "Call Eddie" ? "tel:6156032573" : "#start-project";
 
   return (
     <div className="min-h-screen bg-white text-slate-800 pb-24">
@@ -139,11 +157,13 @@ export default function KeystoneLanding() {
               Stop living with <span className="text-[#C8A46A]">“temporary”</span> fixes.
             </h1>
             <p className="mb-4 max-w-2xl text-lg text-slate-200 md:text-xl">
-              I help small businesses fix the stuff that has been sitting too long — without you having to deal with vendors,
-              pricing, or scheduling.
+              Text me a photo. I’ll handle vendors, pricing, and scheduling. You just approve everything first.
             </p>
-            <p className="mb-8 max-w-2xl text-base text-slate-300">
-              You show me the problem. I handle the rest. You approve everything first.
+            <p className="mb-3 max-w-2xl text-base text-slate-300">
+              Built for small and mid-size businesses that do not have time to chase this stuff.
+            </p>
+            <p className="mb-8 max-w-2xl text-sm font-semibold text-[#E9D4AB] md:text-base">
+              I can usually get most projects moving within a few days.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="sms:6156032573" className="cta">Text Me a Photo</a>
@@ -153,18 +173,23 @@ export default function KeystoneLanding() {
 
           <div className="rounded-[28px] border border-white/10 bg-white/10 p-6 shadow-2xl shadow-black/10 backdrop-blur">
             <div className="mb-4 inline-flex rounded-full bg-[#C8A46A] px-3 py-1 text-xs font-black uppercase tracking-[0.22em] text-slate-900">
-              What this solves
+              Why people wait
             </div>
-            <h2 className="mb-4 text-2xl font-bold">The stuff that keeps getting pushed off</h2>
+            <h2 className="mb-4 text-2xl font-bold">It usually is not about money. It is about time.</h2>
             <div className="grid gap-3">
-              {issues.slice(0, 4).map((item) => (
+              {[
+                "You do not have time to deal with vendors",
+                "It is not urgent... until it is",
+                "Nobody wants to chase quotes and schedules",
+                "Temporary fixes get normalized and stay too long",
+              ].map((item) => (
                 <div key={item} className="rounded-2xl bg-white/10 p-4 text-slate-100">
                   {item}
                 </div>
               ))}
             </div>
             <p className="mt-5 text-sm text-slate-300">
-              Most places are not broken. They are unfinished. That is where Keystone steps in.
+              That is where Keystone steps in: I close the loop and get it handled.
             </p>
           </div>
         </div>
@@ -180,7 +205,7 @@ export default function KeystoneLanding() {
               They ignore them because they are busy, understaffed, and tired of chasing vendors.
             </p>
             <p className="text-slate-700">
-              So instead of giving you one more thing to manage, I help you get it handled — clearly, quickly, and without the runaround.
+              So instead of giving you one more thing to manage, I help you get it handled clearly, quickly, and without the runaround.
             </p>
           </div>
 
@@ -230,6 +255,39 @@ export default function KeystoneLanding() {
               <p className="text-slate-700">{step.text}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-slate-50 px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <div className="mb-3 text-sm font-black uppercase tracking-[0.2em] text-[#8f6a2d]">Real fixes</div>
+              <h2 className="text-3xl font-black text-slate-900 md:text-4xl">What “temporary” looks like before and after.</h2>
+            </div>
+            <a href="sms:6156032573" className="cta">Text Me a Photo</a>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {beforeAfterExamples.map((item, idx) => (
+              <div key={idx} className="card">
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <div className="mb-2 text-sm font-black uppercase tracking-[0.18em] text-slate-500">Before</div>
+                    <div className="flex h-40 items-center justify-center rounded-2xl bg-slate-200 px-4 text-center text-slate-500">
+                      {item.before}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="mb-2 text-sm font-black uppercase tracking-[0.18em] text-slate-500">After</div>
+                    <div className="flex h-40 items-center justify-center rounded-2xl bg-[#E9F5EC] px-4 text-center text-slate-700">
+                      {item.after}
+                    </div>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm text-slate-600">Use your real project photos here as you complete jobs.</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -311,6 +369,22 @@ export default function KeystoneLanding() {
       </section>
 
       <section className="bg-slate-50 px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-10 max-w-3xl">
+            <div className="mb-3 text-sm font-black uppercase tracking-[0.2em] text-[#8f6a2d]">What happens after you text</div>
+            <h2 className="text-3xl font-black text-slate-900 md:text-4xl">No guessing. No confusing process.</h2>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {nextSteps.map((step) => (
+              <div key={step} className="card">
+                <div className="text-lg font-black text-slate-900">{step}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 px-6 py-16">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[.9fr_1.1fr]">
           <div className="card">
             <div className="mb-3 text-sm font-black uppercase tracking-[0.2em] text-[#8f6a2d]">Quick estimate</div>
@@ -344,17 +418,13 @@ export default function KeystoneLanding() {
             </div>
           </div>
 
-          <form onSubmit={submit} className="card">
+          <form id="start-project" onSubmit={submit} className="card">
             <div className="mb-3 text-sm font-black uppercase tracking-[0.2em] text-[#8f6a2d]">Start your project</div>
             <h2 className="mb-4 text-3xl font-black text-slate-900">Show me what needs fixing.</h2>
-            <p className="mb-6 text-slate-700">Send the basics here, or just text me a photo. Either way, I’ll take it from there.</p>
+            <p className="mb-6 text-slate-700">Keep it simple. Or just text me a photo. Either way, I’ll take it from there.</p>
             <div className="grid gap-3 sm:grid-cols-2">
               <input name="name" placeholder="Your name" className="rounded-xl border border-slate-300 p-3" required />
-              <input name="business" placeholder="Business name" className="rounded-xl border border-slate-300 p-3" />
-            </div>
-            <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <input name="phone" placeholder="Phone" className="rounded-xl border border-slate-300 p-3" required />
-              <input name="budget" value={budget || ""} readOnly placeholder="Budget" className="rounded-xl border border-slate-300 p-3" />
             </div>
             <textarea name="details" rows="6" placeholder="What needs fixed? What's been temporary too long?" className="mt-3 w-full rounded-xl border border-slate-300 p-3" />
             <div className="mt-6 flex flex-wrap gap-3">
